@@ -1,10 +1,9 @@
-
 .home-container{
     position: relative;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-
+    
     .tweet-bg{
         position: absolute;
         width: 100%;
@@ -26,6 +25,15 @@
             left: 40%;
             }
     }
+    .tweet-btn, .msg-btn{
+        position: absolute;
+        top: 88%;
+        left: 83%;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+    } 
+
     .home_tweet-top{
         display: block;
         position: relative;
@@ -55,6 +63,14 @@
                 margin-left: 10%;
                 border: black solid 1px;
             }
+            p{
+                float: left;
+                font-size: 1em;
+                color: yellow;
+                font-weight: bold;
+                margin-top: -5%;
+                margin-right: 5%;
+            }
         }
         div:last-child{
             border-top: yellow solid 1px;
@@ -74,14 +90,7 @@
 
         }
     }
-    .tweet-btn{
-        position: absolute;
-        top: 88%;
-        left: 80%;
-        overflow: hidden;
-        cursor: pointer;
-        z-index: 1;
-    } 
+
 
 .info{
     position: relative;
