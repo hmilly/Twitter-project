@@ -1,6 +1,5 @@
-import "./scss/style.scss";
-import API from "./API";
-
+import API from './API.js'
+// Your code here
 
 let whichUser = "";
 console.log(whichUser);

@@ -1,8 +1,25 @@
+.mypage-bg{
+  background-color: black;
+.msg-img-div{
+  position: absolute;
+  width: 100%;
+  top: 60%;
+  img:first-child{
+    position: absolute;
+    width: 100%;
+    margin-top: -30%;
+  }
+  img:last-child{
+    position: absolute;
+    margin-left: 25%;
+    width: 50%;
+  }
+}
+
 .my_page-top {
   display: block;
   position: relative;
   width: 100%;
-  background-color: black;
   border: black solid 1px;
   .my_page {
     width: 100%;
@@ -159,29 +176,13 @@
     }
   }
 }
-
 .msg-container {
-  background-color: black;
-  position: relative;
+   position: relative;
   width: 100%;
   height: 40vh;
   margin: 0 auto;
   overflow: scroll;
   overflow-x: hidden;
-  .msg-img-div{
-    position: absolute;
-    width: 100%;
-    img:first-child{
-      position: absolute;
-      width: 100%;
-      margin-top: -30%;
-    }
-    img:last-child{
-      position: absolute;
-      margin-left: 25%;
-      width: 50%;
-    }
-  }
   .comments {
     display: block;
     position: relative;
@@ -238,4 +239,5 @@
 }
 .msg-container::-webkit-scrollbar {
   display: none;
+}
 }
