@@ -1,28 +1,30 @@
-import API from './API.js'
+import API from "./API.js";
 // Your code here
 
-let whichUser = "";
-console.log(whichUser);
 
-API.getUsers().then((users) => console.log(users))
-API.getTweets().then((users) => console.log(users))
 
+API.getUsers().then((users) => console.log(users));
+API.getTweets().then((users) => console.log(users));
+
+
+// login verification for index.html
 const loginButton = document.getElementById("homebtn");
 const login = document.getElementById("username");
 
 if (login) {
   login.addEventListener("keyup", (e) =>
-  API.getUsers()
-  .then(userData => {
-        userData.forEach((person) => {
-          if (person.name.toLowerCase() === e.target.value.toLowerCase())
-            loginButton.setAttribute("href", "home.html");
-
-          whichUser = e.target.value;
-          console.log(whichUser);
-          
-        });
-      })
+    API.getUsers().then((userData) => {
+      for (let i in userData)
+        if (
+          userData[i].name.toLowerCase().match(e.target.value.toLowerCase())
+        ) {
+          loginButton.setAttribute("href", "home.html");
+          window.localStorage.clear();
+          API.whichUser.setItem("person", userData[i].name);
+          API.whichUserId.setItem("id", userData[i].id);
+          API.whichUserava.setItem("ava", userData[i].avatar_url);
+        }
+    })
   );
 }
 
@@ -32,3 +34,10 @@ if (loginButton) {
       window.alert("Please enter a valid username to continue.");
   });
 }
+
+console.log(
+  "The current user is",
+  API.whichUser.person,
+  "with user id: ",
+  API.whichUserId.id
+);

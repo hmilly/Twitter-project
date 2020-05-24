@@ -20,7 +20,6 @@
   display: block;
   position: relative;
   width: 100%;
-  border: black solid 1px;
   .my_page {
     width: 100%;
     padding: 7% 8%;
@@ -49,10 +48,11 @@
     margin-right: 0;
     .img-counter {
     cursor: pointer;
-    
+    width: 18%;
     float: left;
     img{
-        width: 150%;
+        width: 100%;
+        float: left;
     }
     }
     .info-box {
@@ -87,7 +87,7 @@
         display: block;
         width: 50%;
         padding: .5% 0;
-        margin-left: 14.5%;
+        margin-left: 7%;
         float: left;
         border-bottom: grey solid 2px;
       }
@@ -200,6 +200,7 @@
     padding-bottom: 5%;
 
     img {
+      width: 10%;
       display: inline-block;
     }
     .comments-box {
