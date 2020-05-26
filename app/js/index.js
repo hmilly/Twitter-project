@@ -16,7 +16,7 @@ if (login) {
     API.getUsers().then((userData) => {
       for (let i in userData)
         if (
-          userData[i].name.toLowerCase().match(e.target.value.toLowerCase())
+          userData[i].name.toLowerCase() === e.target.value.toLowerCase()
         ) {
           loginButton.setAttribute("href", "home.html");
           window.localStorage.clear();
@@ -30,7 +30,7 @@ if (login) {
 
 if (loginButton) {
   loginButton.addEventListener("click", (e) => {
-    if (e.target.href == "http://localhost:8080/")
+    if (e.target.href === "http://localhost:8080/index.html" || e.target.href === "http://localhost:8080/")
       window.alert("Please enter a valid username to continue.");
   });
 }

@@ -1,4 +1,5 @@
 .home-container{
+    border: rgba(0, 0, 0, 0.258) solid 1px;
     position: relative;
     width: 100%;
     height: 100%;
@@ -159,7 +160,7 @@
 .tweet-container{
     position: relative;
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     margin: 0 auto;
     overflow: scroll;
     overflow-x: hidden;
@@ -178,6 +179,7 @@
             width: 100%;
             background-color: yellow;
             border-radius: 5px;
+            cursor: pointer;
             h5{
                 margin: 0;
                 padding: 4% 9%;
@@ -191,7 +193,7 @@
         .content{
             color: grey;
             height: auto;
-            padding: 0 8%;
+            padding: 2% 8%;
             p{
                 margin: 3% auto;
             }
@@ -201,28 +203,36 @@
         }
         .footer{
             width: 90%;
+            height: auto;
             margin: 0 auto;
             border-top: rgba(197, 197, 197, 0.842) solid 1px;
             .cont{
                 display: inline-block;
                 width: 32%;
-                padding: 2% 6%;
-                img{
+                padding: 2% 5%;
+                margin-top: 0;
+                img, button{
                     float: left;
                     padding: 2% 6%;
                     cursor: pointer;
+                    border: none;
+                    background: none;
+                }
+                button{
+                    padding: 0;
                 }
                 p{
                     font-style: normal;
                     font-weight: bold;
                     color: grey;
-                    padding-top: 5%;
-                    padding-right: 30%;
+                    padding-top: 2%;
+                    padding-right: 20%;
                     margin: 0;
                     float: right;
                 }
             }
         }
+        
         .text{
             border-top: rgba(197, 197, 197, 0.842) solid 1px;
             width: 90%;
@@ -260,7 +270,6 @@
                     font-weight: 400;
                     padding: 2% 4%;
                     margin-top: -5%;
-                    margin-left: 10%;
                 }  
             }
         }

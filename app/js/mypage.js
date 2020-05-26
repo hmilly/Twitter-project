@@ -8,41 +8,55 @@ console.log(
   "The current user is",
   API.whichUser.person,
   "with user id: ",
-  API.whichUserId.id
+  API.whichUserId.id,
+  "last user clicked was:",
+  API.clickedUser.user
 );
 
-let firstComBox = document.querySelector(".contents > p");
-let commentBoxes = document.querySelector(".msg-container");
+
+let commentsDiv = document.querySelector(".msg-container");
 let title = document.querySelector(".title > h2");
 let at = document.querySelector(".at");
 let profilePic = document.querySelector(".img-counter > img");
-let heart = document.querySelector(".heart > p");
-let share = document.querySelector(".share > p");
-let cmts = document.querySelector(".cmts > p");
+let likes = document.querySelector(".heart > img");
+let share = document.querySelector(".share > img");
+
+API.getTweets().then(() => {
+      likes.addEventListener(
+      "click",
+      (e) => {
+        e.target.src = "./img/icon.png";
+      }
+    )
+})
+.then(() => {
+  share.addEventListener(
+      "click",
+      (e) => {
+        e.target.src = "./img/retweet.png";
+      }
+    )
+})
+
 
 API.getUsers().then((userData) => {
   for (let i in userData) {
-    if (userData[i].name === API.whichUser.person) {
-      title.innerText = `${API.whichUser.person}`;
-      at.innerText = `@${API.whichUserava.person}`;
-      profilePic.src = `${API.whichUserava.ava}`;
+    if (userData[i].name === API.clickedUser.user) {
+      title.innerText = `${userData[i].name}`;
+      at.innerText = `@${userData[i].name}`;
+      profilePic.src = `${userData[i].avatar_url}`;
 
-      userData[i].tweets.forEach((tweet, index) => {
-        if (index === 0){
-          firstComBox.innerText = tweet.content; 
-          heart.innerText = tweet.likes;
-          share.innerText = tweet.retweets;
-        } else {
-        let createdcoms = document.createElement("div");
-        createdcoms.className = "item";
-        createdcoms.innerHTML = `
+      userData[i].tweets.forEach((tweet) => {
+        let newcomment = document.createElement("div");
+        newcomment.className = "item";
+        newcomment.innerHTML = `
             <div class="head">
-                <img src="${API.whichUserava.ava}" alt="circular picture token">
+                <img src="${userData[i].avatar_url}" alt="circular picture token">
                 <div class="comments-box">
                     <div>
                         <div>
-                            <p>${API.whichUser.person}</p>
-                            <p>@${API.whichUser.person}</p>
+                            <p>${userData[i].name}</p>
+                            <p>@${userData[i].name}</p>
                         </div>
                     </div>
                     <span></span>
@@ -53,9 +67,9 @@ API.getUsers().then((userData) => {
                     ${tweet.content}
                 </p>
             </div>`;
-        commentBoxes.append(createdcoms);
+        commentsDiv.append(newcomment);
       }
-      });
+      );
     }
   }
-});
+})
