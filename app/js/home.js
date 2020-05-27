@@ -55,7 +55,7 @@ API.getTweets()
       tweetContainer.append(text);
     }
   })
-  .then(tweetData => {
+  .then(() => {
     let users = document.querySelectorAll(".header")
     users.forEach(u =>
       u.addEventListener("click", () => {
@@ -65,7 +65,7 @@ API.getTweets()
       })
       )
   })
-  .then((tweetData) => {
+  .then(() => {
     let likes = document.querySelectorAll(".heart");
     const once = { one: true };
     likes.forEach((like) =>
@@ -78,7 +78,7 @@ API.getTweets()
       )
     );
   })
-  .then((tweetData) => {
+  .then(() => {
     let retweets = document.querySelectorAll(".retweet");
     const once = { one: true };
     retweets.forEach((tweet) =>
@@ -91,7 +91,7 @@ API.getTweets()
       )
     );
   })
-  .then((tweetData) => {
+  .then(() => {
     let coms = document.querySelectorAll(".msgs");
 
     coms.forEach(item => {

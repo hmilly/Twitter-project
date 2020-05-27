@@ -127,7 +127,7 @@
   .home-container .tweet-container {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 66.7vh;
     margin: 0 auto;
     overflow: scroll;
     overflow-x: hidden; }
@@ -385,12 +385,17 @@ body {
       .mypage-bg .my_page-top .footer .cont {
         display: inline-block;
         width: 32%;
-        padding: 2% 6%; }
-        .mypage-bg .my_page-top .footer .cont img {
-          width: 45%;
+        padding: 2% 6%;
+        margin-top: 0; }
+        .mypage-bg .my_page-top .footer .cont img, .mypage-bg .my_page-top .footer .cont button {
+          width: 40%;
           float: left;
           padding: 2% 6%;
-          cursor: pointer; }
+          cursor: pointer;
+          border: none;
+          background: none; }
+        .mypage-bg .my_page-top .footer .cont button {
+          width: 100%; }
         .mypage-bg .my_page-top .footer .cont p {
           font-size: 25px;
           font-weight: bold;
@@ -439,10 +444,11 @@ body {
   .mypage-bg .msg-container {
     position: relative;
     width: 100%;
-    height: 40vh;
+    height: 54vh;
     margin: 0 auto;
     overflow: scroll;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+    padding-top: 2%; }
     .mypage-bg .msg-container .comments {
       display: block;
       position: relative; }

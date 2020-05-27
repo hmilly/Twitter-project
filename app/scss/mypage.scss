@@ -115,12 +115,19 @@
       display: inline-block;
       width: 32%;
       padding: 2% 6%;
-      img {
-        width: 45%;
+      margin-top: 0;
+      img, button {
+        width: 40%;
         float: left;
         padding: 2% 6%;
         cursor: pointer;
+        border: none;
+        background: none;
       }
+      button{
+
+        width: 100%;
+    }
       p {
         font-size: 25px;
         font-weight: bold;
@@ -177,12 +184,13 @@
   }
 }
 .msg-container {
-   position: relative;
+  position: relative;
   width: 100%;
-  height: 40vh;
+  height: 54vh;
   margin: 0 auto;
   overflow: scroll;
   overflow-x: hidden;
+  padding-top: 2%;
   .comments {
     display: block;
     position: relative;

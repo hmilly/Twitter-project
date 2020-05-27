@@ -9,6 +9,8 @@ let whichUser = window.localStorage;
 let whichUserId = window.localStorage;
 let whichUserava = window.localStorage;
 let clickedUser = window.localStorage;
+let clickedUserId = window.localStorage;
+let clickedUserava = window.localStorage;
 
 export default {
   getTweets,
@@ -16,5 +18,7 @@ export default {
   whichUser,
   whichUserava,
   whichUserId,
-  clickedUser
+  clickedUser,
+  clickedUserId,
+  clickedUserava
 };
