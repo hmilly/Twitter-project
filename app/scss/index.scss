@@ -57,8 +57,10 @@ body {
         background-color: black;
         cursor: pointer;
         border: black solid 1px;
-        border-bottom: yellow solid 2px;
+        border-bottom: yellow solid 2px; 
+        outline: none;
       }
+      
 
       .homeButton {
         display: inline-block;

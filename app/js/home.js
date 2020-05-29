@@ -9,14 +9,13 @@ console.log(
   API.whichUser.person,
   "with user id: ",
   API.whichUserId.id,
-  "The last clicked User is :",
-  API.clickedUser.user
+  "The clicked comment id is :",
+  API.clickedCommentId.comid
 );
 
-
-let title = document.querySelector(".title > h2");
-let at = document.querySelector(".at > div > p");
-let tweetContainer = document.querySelector(".tweet-container");
+const title = document.querySelector(".title > h2");
+const at = document.querySelector(".at > div > p");
+const tweetContainer = document.querySelector(".tweet-container");
 
 API.getTweets()
   .then((tweetData) => {
@@ -25,7 +24,7 @@ API.getTweets()
         title.innerText = `${API.whichUser.person}`;
         at.innerText = `@${API.whichUser.person}`;
       }
-      let text = document.createElement("div");
+      const text = document.createElement("div");
       text.className = "comment-box";
       text.innerHTML = `
         <a href=""><div class="header">
@@ -56,17 +55,17 @@ API.getTweets()
     }
   })
   .then(() => {
-    let users = document.querySelectorAll(".header")
-    users.forEach(u =>
+    const users = document.querySelectorAll(".header");
+    users.forEach((u, i) =>
       u.addEventListener("click", () => {
-      API.clickedUser.removeItem('user')
-      API.clickedUser.setItem("user", u.firstChild.nextElementSibling.innerText)
-      u.parentNode.href = "mypage.html"
+        API.clickedCommentId.removeItem("comid");
+        API.clickedCommentId.setItem("comid", (i + 1));
+        u.parentNode.href = "mypage.html";
       })
-      )
+    );
   })
   .then(() => {
-    let likes = document.querySelectorAll(".heart");
+    const likes = document.querySelectorAll(".heart");
     const once = { one: true };
     likes.forEach((like) =>
       like.addEventListener(
@@ -79,7 +78,7 @@ API.getTweets()
     );
   })
   .then(() => {
-    let retweets = document.querySelectorAll(".retweet");
+    const retweets = document.querySelectorAll(".retweet");
     const once = { one: true };
     retweets.forEach((tweet) =>
       tweet.addEventListener(
@@ -92,38 +91,33 @@ API.getTweets()
     );
   })
   .then(() => {
-    let coms = document.querySelectorAll(".msgs");
-
-    coms.forEach(item => {
-      item.addEventListener(
-        "click",
-        e => {
-          const combox = document.createElement("div");
-          combox.className = "text";
-          combox.innerHTML = `
+    const coms = document.querySelectorAll(".msgs");
+    coms.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const combox = document.createElement("div");
+        combox.className = "text";
+        combox.innerHTML = `
         <textarea name="comment" class="commentText" placeholder="Your comment" rows="5"></textarea>
         <div>
           <img src="./img/Arrow 1.png" alt="arrow" class="arrow"></img>
           <button class="reply">Reply</button>
         </div>`;
-          e.target.offsetParent.append(combox);
+        e.target.offsetParent.append(combox);
 
-          item.disabled = true;
+        item.disabled = true;
 
-          const arrow = combox.querySelector(".arrow")
-          arrow.addEventListener("click", () => {
-            combox.remove(combox)
-            item.disabled = false;
-          })
-
-          const reply = combox.querySelector(".reply")
-          reply.addEventListener("click", () => {
-          const textcont = combox.querySelector(".commentText").value
-          combox.remove(combox)
+        const arrow = combox.querySelector(".arrow");
+        arrow.addEventListener("click", () => {
+          combox.remove(combox);
           item.disabled = false;
-          })
+        });
 
-        }
-      );
+        const reply = combox.querySelector(".reply");
+        reply.addEventListener("click", () => {
+          const textcont = combox.querySelector(".commentText").value;
+          combox.remove(combox);
+          item.disabled = false;
+        });
+      });
     });
   });

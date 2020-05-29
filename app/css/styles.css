@@ -277,7 +277,8 @@ body {
         background-color: black;
         cursor: pointer;
         border: black solid 1px;
-        border-bottom: yellow solid 2px; }
+        border-bottom: yellow solid 2px;
+        outline: none; }
       .login-main .login-container .form .homeButton {
         display: inline-block;
         position: relative;
@@ -401,7 +402,7 @@ body {
           font-weight: bold;
           color: white;
           padding-top: 3%;
-          padding-right: 20%;
+          padding-right: 10%;
           margin: 0;
           float: right; }
     .mypage-bg .my_page-top .text {

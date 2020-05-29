@@ -8,9 +8,9 @@ const getUsers = async () => await fetch (USERS_URL).then((res) => res.json());
 let whichUser = window.localStorage;
 let whichUserId = window.localStorage;
 let whichUserava = window.localStorage;
+let clickedCommentId = window.localStorage;
 let clickedUser = window.localStorage;
-let clickedUserId = window.localStorage;
-let clickedUserava = window.localStorage;
+
 
 export default {
   getTweets,
@@ -18,7 +18,6 @@ export default {
   whichUser,
   whichUserava,
   whichUserId,
-  clickedUser,
-  clickedUserId,
-  clickedUserava
+  clickedCommentId,
+  clickedUser
 };
