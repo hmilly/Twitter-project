@@ -1,8 +1,9 @@
 import API from "./API.js";
+import { API_ENDPOINT, counting } from "./api.js";
 // Your code here
 
 API.getUsers().then((users) => console.log(users));
-API.getTweets().then((users) => console.log(users));
+API.getTweets().then((tweets) => console.log(tweets));
 
 console.log(
   "The current user is",
@@ -25,7 +26,8 @@ API.getTweets()
         at.innerText = `@${API.whichUser.person}`;
       }
       const text = document.createElement("div");
-      text.className = "comment-box";
+      text.className = `comment-box`;
+      text.id = `${tweetData[i].id}`;
       text.innerHTML = `
         <a href=""><div class="header">
           <h5 class="userName">${tweetData[i].user.name}</h5>
@@ -59,18 +61,23 @@ API.getTweets()
     users.forEach((u, i) =>
       u.addEventListener("click", () => {
         API.clickedCommentId.removeItem("comid");
-        API.clickedCommentId.setItem("comid", (i + 1));
+        API.clickedCommentId.setItem("comid", i + 1);
         u.parentNode.href = "mypage.html";
       })
     );
   })
   .then(() => {
     const likes = document.querySelectorAll(".heart");
-    const once = { one: true };
+    const once = { once: true };
     likes.forEach((like) =>
       like.addEventListener(
         "click",
         (e) => {
+          const parentId = e.path[3].id;
+          const addLike =
+            parseInt(like.parentElement.querySelector("p").innerText) + 1;
+          counting({ likes: addLike }, `${API_ENDPOINT}/tweets/${parentId}`);
+          like.parentElement.querySelector("p").innerText = addLike
           e.target.src = "./img/icon.png";
         },
         once
@@ -79,11 +86,16 @@ API.getTweets()
   })
   .then(() => {
     const retweets = document.querySelectorAll(".retweet");
-    const once = { one: true };
+    const once = { once: true };
     retweets.forEach((tweet) =>
       tweet.addEventListener(
         "click",
         (e) => {
+          const parentId = e.path[3].id;
+          const addRetweet =
+            parseInt(tweet.parentElement.querySelector("p").innerText) + 1;
+          counting({ retweets: addRetweet }, `${API_ENDPOINT}/tweets/${parentId}`);
+          tweet.parentElement.querySelector("p").innerText = addRetweet
           e.target.src = "./img/retweet.png";
         },
         once
@@ -121,3 +133,81 @@ API.getTweets()
       });
     });
   });
+
+/**
+  // set base URL to your json server
+
+ * create an async function {getComments}, which 
+ * gets data from URL and returns the data as JS objects
+
+let getComments = async () => {
+  return await fetch(`${baseURL}/comments`).then(res => res.json()).catch(error => console.log(error))
+}
+
+* create an async function {postComment}, which takes {newComment} as an argument,
+* and posts it to the comments URL.
+*
+let postComment = async (newComment) => {
+  const configObject = {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
+      body: JSON.stringify(newComment),
+  };
+
+  return await fetch(`${baseURL}/comments`, configObject)
+      .then(res => (res.ok) ? res.json() : "Oops something went wrong!").catch(error => console.log(error))
+}
+
+* Create an async function {patchComment}, which takes {comment}
+* and {newCommentBody} as arguments.
+*
+let patchComment = async (comment, newCommentBody) => {
+  const configObject = {
+      method: "PATCH",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
+      body: JSON.stringify({ body: newCommentBody }),
+  };
+
+  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
+      .then(res => (res.ok) ? res.json() : "Oops we couldn't update that!").catch(error => console.log(error))
+}
+
+* create an async function {putComment}, which takes {comment} as an argument,
+* and makes a put request with the new comment data.
+*
+let putComment = async (comment) => {
+  const configObject = {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
+      body: JSON.stringify(comment),
+  };
+
+  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
+      .then(res => (res.ok) ? res.json() : "Oops we couldn't update that!").catch(error => console.log(error))
+}
+
+* create an async function {deleteComment}, which takes {comment} as an argument,
+* and deletes the selected comment from DB.
+let deleteComment = async (comment) => {
+  const configObject = {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+      },
+      body: JSON.stringify(comment),
+  };
+
+  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
+      .then(res => (res.ok) ? "Deleted!" : "That could not be deleted!").catch(error => console.log(error))
+}
+  **/

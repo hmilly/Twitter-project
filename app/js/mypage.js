@@ -2,6 +2,7 @@ API.getUsers().then((users) => console.log(users));
 API.getTweets().then((users) => console.log(users));
 
 import API from "./API.js";
+import { API_ENDPOINT, counting } from "./api.js";
 
 console.log(
   "The current user is",
@@ -19,7 +20,7 @@ const userCont = document.querySelector(".contents > p");
 
 const likeno = document.querySelector(".heart > p");
 const shareno = document.querySelector(".share > p");
-const messages = document.querySelector(".msgs > p")
+const messages = document.querySelector(".msgs > p");
 
 const likes = document.querySelector(".heart > img");
 const share = document.querySelector(".share > img");
@@ -41,50 +42,60 @@ API.getTweets()
         const tweetComments = tweetData[i].comments.map(
           (val) => (tweetData[i].id = val)
         );
-        console.log(tweetComments)
 
-        API.getUsers().then((userData) => {
-          for (let i in userData) {
-            tweetComments.forEach((c) => {
-              if (userData[i].id == c.userId) {
-                const newcomment = document.createElement("div");
-                newcomment.className = "item";
-                newcomment.innerHTML = `
-                          <div class="head">
-                              <img src="${userData[i].avatar_url}" alt="circular picture token">
-                              <div class="comments-box">
-                                  <div>
-                                      <div>
-                                          <p>${userData[i].name}</p>
-                                          <p>@${userData[i].name}</p>
-                                      </div>
-                                  </div>
-                                  <span></span>
-                              </div>
-                          </div>
-                          <div class="content">
-                              <p>
-                                  ${c.content}
-                              </p>
-                          </div>`;
-                commentsDiv.append(newcomment);
+        tweetComments.forEach((comment) => {
+          API.getUsers().then((userData) => {
+            for (let i of userData) {
+              if (i.id === comment.userId){
+              const newcomment = document.createElement("div");
+              newcomment.className = "item";
+              newcomment.innerHTML = `
+                            <div class="head">
+                                <img src="${i.avatar_url}" alt="circular picture token">
+                                <div class="comments-box">
+                                    <div>
+                                        <div>
+                                            <p>${i.name}</p>
+                                            <p>@${i.name}</p>
+                                        </div>
+                                    </div>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>
+                                    ${comment.content}
+                                </p>
+                            </div>`;
+              commentsDiv.append(newcomment);
               }
-            });
-          }
+            }
+          });
         });
-        console.log(tweetComments);
       }
     }
   })
   .then(() => {
+    const once = { once: true };
     likes.addEventListener("click", (e) => {
+      const addLikes =
+        parseInt(likes.parentElement.querySelector("p").innerText) + 1;
+      counting({ likes: addLikes }, `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`);
+      likes.parentElement.querySelector("p").innerText = addLikes
       e.target.src = "./img/icon.png";
-    });
+    },
+    once);
   })
   .then(() => {
+    const once = { once: true };
     share.addEventListener("click", (e) => {
+      const addRetweet =
+        parseInt(share.parentElement.querySelector("p").innerText) + 1;
+      counting({ retweets: addRetweet }, `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`);
+      share.parentElement.querySelector("p").innerText = addRetweet
       e.target.src = "./img/retweet.png";
-    });
+    },
+    once);
   })
 
   .then(() => {
