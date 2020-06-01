@@ -31,8 +31,8 @@
       "id": 1,
       "userId": 1,
       "content": "Lip-Sync for Your Life",
-      "likes": 98,
-      "retweets": 41,
+      "likes": 99,
+      "retweets": 42,
       "date": "26/05/2020"
     },
     {
@@ -218,6 +218,14 @@
       "likes": 2,
       "retweets": 20,
       "date": "14/05/2020"
+    },
+    {
+      "userId": 1,
+      "content": "GREAT DAY INNIT",
+      "likes": 1,
+      "retweets": 0,
+      "date": "1/05/2020",
+      "id": 25
     }
   ],
   "comments": [
@@ -398,7 +406,8 @@
       "userId": 1,
       "tweetId": 13,
       "content": "If we program the sensor, we can get to the TCP program through the primary AGP application!",
-      "date": "11/05/2020"
+      "date": "11/05/2020",
+      "likes": 2
     },
     {
       "id": 26,
@@ -553,6 +562,42 @@
       "tweetId": 23,
       "content": "Sissy That Walk",
       "date": "19/05/2020"
+    },
+    {
+      "userId": 3,
+      "tweetId": 6,
+      "content": "love this hun, good job",
+      "date": "1/05/2020",
+      "retweets": 0,
+      "likes": 0,
+      "id": 48
+    },
+    {
+      "userId": 3,
+      "tweetId": 6,
+      "content": "gime some more great stuff",
+      "date": "1/05/2020",
+      "retweets": 0,
+      "likes": 0,
+      "id": 49
+    },
+    {
+      "userId": 1,
+      "tweetId": 1,
+      "content": "hey yall",
+      "date": "1/05/2020",
+      "retweets": 0,
+      "likes": 0,
+      "id": 50
+    },
+    {
+      "userId": 1,
+      "tweetId": 25,
+      "content": "THANKS THEN",
+      "date": "1/05/2020",
+      "retweets": 0,
+      "likes": 0,
+      "id": 51
     }
   ]
 }

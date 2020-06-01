@@ -1,5 +1,5 @@
 import API from "./API.js";
-import { API_ENDPOINT, counting } from "./api.js";
+import { API_ENDPOINT, counting, makeNewComment } from "./api.js";
 // Your code here
 
 API.getUsers().then((users) => console.log(users));
@@ -17,6 +17,8 @@ console.log(
 const title = document.querySelector(".title > h2");
 const at = document.querySelector(".at > div > p");
 const tweetContainer = document.querySelector(".tweet-container");
+
+const filecont = document.querySelector(".fileContainer");
 
 API.getTweets()
   .then((tweetData) => {
@@ -77,7 +79,7 @@ API.getTweets()
           const addLike =
             parseInt(like.parentElement.querySelector("p").innerText) + 1;
           counting({ likes: addLike }, `${API_ENDPOINT}/tweets/${parentId}`);
-          like.parentElement.querySelector("p").innerText = addLike
+          like.parentElement.querySelector("p").innerText = addLike;
           e.target.src = "./img/icon.png";
         },
         once
@@ -94,8 +96,11 @@ API.getTweets()
           const parentId = e.path[3].id;
           const addRetweet =
             parseInt(tweet.parentElement.querySelector("p").innerText) + 1;
-          counting({ retweets: addRetweet }, `${API_ENDPOINT}/tweets/${parentId}`);
-          tweet.parentElement.querySelector("p").innerText = addRetweet
+          counting(
+            { retweets: addRetweet },
+            `${API_ENDPOINT}/tweets/${parentId}`
+          );
+          tweet.parentElement.querySelector("p").innerText = addRetweet;
           e.target.src = "./img/retweet.png";
         },
         once
@@ -104,8 +109,11 @@ API.getTweets()
   })
   .then(() => {
     const coms = document.querySelectorAll(".msgs");
-    coms.forEach((item) => {
+    coms.forEach((item, i) => {
       item.addEventListener("click", (e) => {
+        API.clickedCommentId.removeItem("comid");
+        API.clickedCommentId.setItem("comid", i + 1);
+
         const combox = document.createElement("div");
         combox.className = "text";
         combox.innerHTML = `
@@ -123,12 +131,19 @@ API.getTweets()
           combox.remove(combox);
           item.disabled = false;
         });
-
         const reply = combox.querySelector(".reply");
-        reply.addEventListener("click", () => {
-          const textcont = combox.querySelector(".commentText").value;
-          combox.remove(combox);
-          item.disabled = false;
+        reply.addEventListener("click", (e) => {
+          const textcont = combox.querySelector(".commentText");
+
+          if (textcont.value === "") {
+            window.alert("Please enter a comment!");
+          } else {
+            makeNewComment(`${textcont.value}`);
+            let pselect = item.parentNode.querySelector("p")
+            pselect.innerText = parseInt(pselect.innerText) + 1;
+            combox.remove(combox);
+            item.disabled = false;
+          }
         });
       });
     });

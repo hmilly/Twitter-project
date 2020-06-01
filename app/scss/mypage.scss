@@ -1,5 +1,8 @@
 .mypage-bg{
+  display: block;
+  position: relative;
   background-color: black;
+  height: 100vh;
 .msg-img-div{
   position: absolute;
   width: 100%;
@@ -19,6 +22,7 @@
 .my_page-top {
   display: block;
   position: relative;
+  float: top;
   width: 100%;
   .my_page {
     width: 100%;
@@ -101,7 +105,7 @@
     height: auto;
     padding: 0 5% 3%;
     p {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       padding: 1%;
     }
@@ -114,10 +118,10 @@
     .cont {
       display: inline-block;
       width: 32%;
-      padding: 2% 6%;
+      padding: 1% 6%;
       margin-top: 0;
       img, button {
-        width: 40%;
+        width: 35%;
         float: left;
         padding: 2% 6%;
         cursor: pointer;
@@ -128,11 +132,10 @@
         width: 100%;
     }
       p {
-        font-size: 25px;
+        font-size: 18px;
         font-weight: bold;
         color: white;
-        padding-top: 3%;
-        padding-right: 10%;
+        padding-right: 20%;
         margin: 0;
         float: right;
       }
@@ -140,14 +143,12 @@
   }
   .text {
     width: 90%;
-    padding: 5% 0;
     margin: 2% auto;
     textarea {
       background-color: black;
-      padding: 3% 2%;
+      padding: 1% 2%;
       font-size: large;
       float: top;
-      height: 80%;
       width: 100%;
       border: yellow solid 2px;
       border-radius: 5px;
@@ -159,23 +160,23 @@
       width: 100%;
       float: bottom;
       padding: 5%;
-
+      margin-bottom: -4%;
       img {
         width: 8%;
         float: left;
         cursor: pointer;
-        margin-top: -2%;
+        margin-top: -4%;
       }
       button {
         float: right;
         font-size: 1.2em;
         font-weight: 800;
         cursor: pointer;
-        width: 20%;
+        width: 16%;
         border-radius: 5px;
         background-color: yellow;
         color: black;
-        padding: 2% 4%;
+        padding: 1%;
         margin-top: -5%;
         margin-left: 10%;
       }
@@ -183,13 +184,15 @@
   }
 }
 .msg-container {
+  display: block;
   position: relative;
+  float:bottom;
   width: 100%;
-  height: 54vh;
+  height: 50%;
   margin: 0 auto;
   overflow: scroll;
   overflow-x: hidden;
-  padding-top: 2%;
+  
   .comments {
     display: block;
     position: relative;
