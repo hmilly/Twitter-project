@@ -1,6 +1,5 @@
 import API from "./API.js";
 import { createNewTweet } from "./api.js";
-// Your code here
 
 console.log(
   "The current user is",
@@ -11,12 +10,8 @@ console.log(
   API.clickedCommentId.comid
 );
 
-API.getUsers().then((users) => console.log(users));
-API.getTweets().then((tweets) => console.log(tweets));
-
   const tweetTextArea = document.querySelector(".tweetTextArea")
   const tweetbutton = document.querySelector(".tweetButton")
-
     tweetbutton.addEventListener("click", async (e) => {
       if (tweetTextArea.value === ""){
         e.preventDefault()

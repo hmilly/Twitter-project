@@ -2,18 +2,14 @@ export const API_ENDPOINT = "http://localhost:3000";
 export const USERS_URL = `${API_ENDPOINT}/users?_embed=tweets`;
 export const TWEETS_URL = `${API_ENDPOINT}/tweets?_expand=user&_embed=comments`;
 
-
-
-const getTweets = async () => await fetch(TWEETS_URL).then((res) => res.json());
-const getUsers = async () => await fetch (USERS_URL).then((res) => res.json());
+const getTweets = async () => await fetch(TWEETS_URL).then((res) => res.json()).catch(error => console.log(error));
+const getUsers = async () => await fetch (USERS_URL).then((res) => res.json()).catch(error => console.log(error));
 
 let whichUser = window.localStorage;
 let whichUserId = window.localStorage;
 let whichUserava = window.localStorage;
 let clickedCommentId = window.localStorage;
 let clickedUser = window.localStorage;
-
-
 
 export default {
   getTweets,
@@ -34,7 +30,6 @@ export const counting = async (obj, url) => {
     },
     body: JSON.stringify(obj),
   };
-
   return await fetch(url, configObject)
     .then((res) => (res.ok ? res.json() : "Oops we couldn't update that!"))
     .catch((error) => console.log(error));
@@ -60,12 +55,10 @@ export const createNewTweet = async (msg) => {
       "date": `${currentDate}`
     }),
   };
-
   await fetch(`${API_ENDPOINT}/tweets`, configObject)
     .then((res) => (res.ok ? res.json() : "Oops we couldn't update that!"))
     .catch((error) => console.log(error));
 }
-
 
 export const makeNewComment = async (comment) => {
     const configObject = await {
@@ -83,14 +76,12 @@ export const makeNewComment = async (comment) => {
       "likes": 0
     }),
   };
-
   await fetch(`${API_ENDPOINT}/comments`, configObject)
     .then((res) => (res.ok ? res.json() : "Oops we couldn't update that!"))
     .catch((error) => console.log(error));
 }
 
-/*
-let deleteComment = async (id) => {
+const deleteComment = async (id) => {
   const configObject = {
       method: "DELETE",
       headers: {
@@ -103,6 +94,3 @@ let deleteComment = async (id) => {
   return await fetch(`${API_ENDPOINT}/tweets/${id}`, configObject)
       .then(res => (res.ok) ? "Deleted!" : "That could not be deleted!").catch(error => console.log(error))
 }
-deleteComment(25)
-
-*/

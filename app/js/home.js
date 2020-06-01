@@ -1,9 +1,5 @@
 import API from "./API.js";
 import { API_ENDPOINT, counting, makeNewComment } from "./api.js";
-// Your code here
-
-API.getUsers().then((users) => console.log(users));
-API.getTweets().then((tweets) => console.log(tweets));
 
 console.log(
   "The current user is",
@@ -17,8 +13,6 @@ console.log(
 const title = document.querySelector(".title > h2");
 const at = document.querySelector(".at > div > p");
 const tweetContainer = document.querySelector(".tweet-container");
-
-const filecont = document.querySelector(".fileContainer");
 
 API.getTweets()
   .then((tweetData) => {
@@ -131,15 +125,15 @@ API.getTweets()
           combox.remove(combox);
           item.disabled = false;
         });
+
         const reply = combox.querySelector(".reply");
         reply.addEventListener("click", (e) => {
           const textcont = combox.querySelector(".commentText");
-
           if (textcont.value === "") {
             window.alert("Please enter a comment!");
           } else {
             makeNewComment(`${textcont.value}`);
-            let pselect = item.parentNode.querySelector("p")
+            const pselect = item.parentNode.querySelector("p")
             pselect.innerText = parseInt(pselect.innerText) + 1;
             combox.remove(combox);
             item.disabled = false;
@@ -148,81 +142,3 @@ API.getTweets()
       });
     });
   });
-
-/**
-  // set base URL to your json server
-
- * create an async function {getComments}, which 
- * gets data from URL and returns the data as JS objects
-
-let getComments = async () => {
-  return await fetch(`${baseURL}/comments`).then(res => res.json()).catch(error => console.log(error))
-}
-
-* create an async function {postComment}, which takes {newComment} as an argument,
-* and posts it to the comments URL.
-*
-let postComment = async (newComment) => {
-  const configObject = {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-      },
-      body: JSON.stringify(newComment),
-  };
-
-  return await fetch(`${baseURL}/comments`, configObject)
-      .then(res => (res.ok) ? res.json() : "Oops something went wrong!").catch(error => console.log(error))
-}
-
-* Create an async function {patchComment}, which takes {comment}
-* and {newCommentBody} as arguments.
-*
-let patchComment = async (comment, newCommentBody) => {
-  const configObject = {
-      method: "PATCH",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-      },
-      body: JSON.stringify({ body: newCommentBody }),
-  };
-
-  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
-      .then(res => (res.ok) ? res.json() : "Oops we couldn't update that!").catch(error => console.log(error))
-}
-
-* create an async function {putComment}, which takes {comment} as an argument,
-* and makes a put request with the new comment data.
-*
-let putComment = async (comment) => {
-  const configObject = {
-      method: "PUT",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-      },
-      body: JSON.stringify(comment),
-  };
-
-  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
-      .then(res => (res.ok) ? res.json() : "Oops we couldn't update that!").catch(error => console.log(error))
-}
-
-* create an async function {deleteComment}, which takes {comment} as an argument,
-* and deletes the selected comment from DB.
-let deleteComment = async (comment) => {
-  const configObject = {
-      method: "DELETE",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-      },
-      body: JSON.stringify(comment),
-  };
-
-  return await fetch(`${baseURL}/comments/${comment.id}`, configObject)
-      .then(res => (res.ok) ? "Deleted!" : "That could not be deleted!").catch(error => console.log(error))
-}
-  **/

@@ -1,6 +1,3 @@
-API.getUsers().then((users) => console.log(users));
-API.getTweets().then((users) => console.log(users));
-
 import API from "./API.js";
 import { API_ENDPOINT, counting, makeNewComment, currentDate } from "./api.js";
 
@@ -69,9 +66,7 @@ API.getTweets()
         shareno.innerText = `${tweetData[i].retweets}`;
         messages.innerText = `${tweetData[i].comments.length}`;
 
-        tweetData[i].comments.forEach((item) => {
-          showComment(item);
-        });
+        tweetData[i].comments.forEach((item) => showComment(item));
       }
     }
   })
@@ -109,10 +104,8 @@ API.getTweets()
       once
     );
   })
-
   .then(() => {
     const coms = document.querySelector(".msgs");
-
     coms.addEventListener("click", (e) => {
       const combox = document.createElement("div");
       combox.className = "text";
@@ -125,7 +118,7 @@ API.getTweets()
       e.target.offsetParent.append(combox);
 
       coms.disabled = true;
-      commentsDiv.style.height = "30%";
+      commentsDiv.style.height = "42%";
 
       const arrow = combox.querySelector(".arrow");
       arrow.addEventListener("click", () => {
@@ -137,8 +130,7 @@ API.getTweets()
       const reply = combox.querySelector(".reply");
       reply.addEventListener("click", () => {
         const textcont = combox.querySelector(".commentText");
-        let pselect = coms.parentNode.querySelector("p");
-        console.log(pselect.innerText);
+        const pselect = coms.parentNode.querySelector("p");
 
         if (textcont.value === "") {
           window.alert("Please enter a comment!");
@@ -152,7 +144,7 @@ API.getTweets()
             "retweets": 0,
             "likes": 0
           });
-          let pselect = coms.parentNode.querySelector("p");
+          const pselect = coms.parentNode.querySelector("p");
           pselect.innerText = parseInt(pselect.innerText) + 1;
           combox.remove(combox);
           coms.disabled = false;
