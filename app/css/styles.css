@@ -20,7 +20,8 @@
       position: absolute;
       top: 80%;
       left: 40%; }
-  .home-container .tweet-btn, .home-container .msg-btn {
+  .home-container .tweet-btn,
+  .home-container .msg-btn {
     position: absolute;
     top: 88%;
     left: 83%;
@@ -82,21 +83,22 @@
     margin-right: 0; }
     .home-container .info .image-counter {
       position: relative;
-      width: 23%;
-      height: 100%;
+      width: 20%;
+      height: auto;
       padding-top: 9%;
       float: left;
       padding-left: 5%; }
       .home-container .info .image-counter .fileContainer {
         overflow: hidden;
         position: absolute;
-        border-radius: 50%;
-        overflow: hidden; }
+        border-radius: 50%; }
         .home-container .info .image-counter .fileContainer img {
-          width: 100%; }
-      .home-container .info .image-counter .fileContainer [type=file] {
+          width: 100%;
+          height: auto;
+          max-width: auto; }
+      .home-container .info .image-counter .fileContainer [type="file"] {
         display: block;
-        font-size: 999px;
+        font-size: 9px;
         filter: alpha(opacity=0);
         width: 100%;
         height: 100%;
@@ -105,6 +107,8 @@
         right: 0;
         text-align: right;
         top: 0; }
+      .home-container .info .image-counter .fileContainer [type="file"] {
+        cursor: pointer; }
     .home-container .info .info-box {
       padding-top: 9%;
       float: right;
@@ -133,7 +137,8 @@
           width: 40%; }
           .home-container .info .info-box .following div h5 {
             padding: 0 5%; }
-          .home-container .info .info-box .following div h5, .home-container .info .info-box .following div p {
+          .home-container .info .info-box .following div h5,
+          .home-container .info .info-box .following div p {
             display: inline-block;
             margin: 0; }
         .home-container .info .info-box .following div:last-child {
@@ -149,8 +154,7 @@
     width: 100%;
     height: 80%;
     margin: 0 auto;
-    overflow: scroll;
-    overflow-x: hidden; }
+    overflow-y: scroll; }
     .home-container .tweet-container .comment-box {
       background-color: white;
       box-shadow: 2px 6px rgba(177, 177, 177, 0.356);
@@ -192,7 +196,8 @@
           width: 32%;
           padding: 2% 5%;
           margin-top: 0; }
-          .home-container .tweet-container .comment-box .footer .cont img, .home-container .tweet-container .comment-box .footer .cont button {
+          .home-container .tweet-container .comment-box .footer .cont img,
+          .home-container .tweet-container .comment-box .footer .cont button {
             float: left;
             padding: 2% 6%;
             cursor: pointer;
@@ -316,7 +321,8 @@ body {
   display: block;
   position: relative;
   background-color: black;
-  height: 100vh; }
+  width: 100%;
+  height: 100%; }
   .mypage-bg .msg-img-div {
     position: absolute;
     width: 100%;
@@ -386,7 +392,7 @@ body {
       .mypage-bg .my_page-top .mypage-info span {
         display: block;
         width: 50%;
-        padding: .5% 0;
+        padding: 0.5% 0;
         margin-left: 7%;
         float: left;
         border-bottom: grey solid 2px; }
@@ -411,7 +417,8 @@ body {
         width: 32%;
         padding: 1% 6%;
         margin-top: 0; }
-        .mypage-bg .my_page-top .footer .cont img, .mypage-bg .my_page-top .footer .cont button {
+        .mypage-bg .my_page-top .footer .cont img,
+        .mypage-bg .my_page-top .footer .cont button {
           width: 35%;
           float: left;
           padding: 2% 6%;
@@ -468,10 +475,9 @@ body {
     position: relative;
     float: bottom;
     width: 100%;
-    height: 60%;
+    height: 70%;
     margin: 0 auto;
-    overflow: scroll;
-    overflow-x: hidden; }
+    overflow-y: scroll; }
     .mypage-bg .msg-container .comments {
       display: block;
       position: relative; }

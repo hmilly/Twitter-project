@@ -14,6 +14,13 @@ const title = document.querySelector(".title > h2");
 const at = document.querySelector(".at > div > p");
 const tweetContainer = document.querySelector(".tweet-container");
 
+const selectedImg = document.querySelector(".fileContainer");
+selectedImg.addEventListener("change", (e) => {
+  let choice = e.target.files[0];
+  const selectedImg = document.querySelector(".userimg");
+  selectedImg.src = URL.createObjectURL(choice);
+});
+
 API.getTweets()
   .then((tweetData) => {
     for (let i in tweetData) {
@@ -133,7 +140,7 @@ API.getTweets()
             window.alert("Please enter a comment!");
           } else {
             makeNewComment(`${textcont.value}`);
-            const pselect = item.parentNode.querySelector("p")
+            const pselect = item.parentNode.querySelector("p");
             pselect.innerText = parseInt(pselect.innerText) + 1;
             combox.remove(combox);
             item.disabled = false;

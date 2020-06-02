@@ -118,13 +118,13 @@ API.getTweets()
       e.target.offsetParent.append(combox);
 
       coms.disabled = true;
-      commentsDiv.style.height = "42%";
+      commentsDiv.style.height = "54%";
 
       const arrow = combox.querySelector(".arrow");
       arrow.addEventListener("click", () => {
         combox.remove(combox);
         coms.disabled = false;
-        commentsDiv.style.height = "60%";
+        commentsDiv.style.height = "70%";
       });
 
       const reply = combox.querySelector(".reply");
@@ -137,18 +137,18 @@ API.getTweets()
         } else {
           makeNewComment(textcont.value);
           showComment({
-            "userId": parseInt(API.whichUserId.id),
-            "tweetId": parseInt(API.clickedCommentId.comid),
-            "content": textcont.value,
-            "date": `${currentDate}`,
-            "retweets": 0,
-            "likes": 0
+            userId: parseInt(API.whichUserId.id),
+            tweetId: parseInt(API.clickedCommentId.comid),
+            content: textcont.value,
+            date: `${currentDate}`,
+            retweets: 0,
+            likes: 0,
           });
           const pselect = coms.parentNode.querySelector("p");
           pselect.innerText = parseInt(pselect.innerText) + 1;
           combox.remove(combox);
           coms.disabled = false;
-          commentsDiv.style.height = "60%";
+          commentsDiv.style.height = "70%";
         }
       });
     });
