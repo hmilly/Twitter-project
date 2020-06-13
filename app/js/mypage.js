@@ -15,8 +15,8 @@ const title = document.querySelector(".title > h2");
 const at = document.querySelector(".at");
 const userCont = document.querySelector(".contents > p");
 
-const likeno = document.querySelector(".heart > p");
-const shareno = document.querySelector(".share > p");
+const likeNo = document.querySelector(".heart > p");
+const shareNo = document.querySelector(".share > p");
 const messages = document.querySelector(".msgs > p");
 
 const likes = document.querySelector(".heart > img");
@@ -28,9 +28,9 @@ const showComment = (item) => {
   API.getUsers().then((userData) => {
     for (let i of userData) {
       if (i.id === item.userId) {
-        const newcomment = document.createElement("div");
-        newcomment.className = "item";
-        newcomment.innerHTML = `
+        const newComment = document.createElement("div");
+        newComment.className = "item";
+        newComment.innerHTML = `
                   <div class="head">
                       <img src="${i.avatar_url}" alt="circular picture token">
                       <div class="comments-box">
@@ -48,108 +48,117 @@ const showComment = (item) => {
                           ${item.content}
                       </p>
                   </div>`;
-        commentsDiv.append(newcomment);
+        commentsDiv.append(newComment);
       }
     }
   });
 };
 
-API.getTweets()
-  .then((tweetData) => {
-    for (let i in tweetData) {
-      if (tweetData[i].id == API.clickedCommentId.comid) {
-        profilePic.src = `${tweetData[i].user.avatar_url}`;
-        title.innerText = `${tweetData[i].user.name}`;
-        at.innerText = `@${tweetData[i].user.name}`;
-        userCont.innerText = `${tweetData[i].content}`;
-        likeno.innerText = `${tweetData[i].likes}`;
-        shareno.innerText = `${tweetData[i].retweets}`;
-        messages.innerText = `${tweetData[i].comments.length}`;
+API.getTweets().then(data => displayTweets(data))
 
-        tweetData[i].comments.forEach((item) => showComment(item));
-      }
+
+const displayTweets = (tweetData) => {
+  for (let i in tweetData) {
+    if (tweetData[i].id == API.clickedCommentId.comid) {
+      profilePic.src = `${tweetData[i].user.avatar_url}`;
+      title.innerText = `${tweetData[i].user.name}`;
+      at.innerText = `@${tweetData[i].user.name}`;
+      userCont.innerText = `${tweetData[i].content}`;
+      likeNo.innerText = `${tweetData[i].likes}`;
+      shareNo.innerText = `${tweetData[i].retweets}`;
+      messages.innerText = `${tweetData[i].comments.length}`;
+
+      tweetData[i].comments.forEach((item) => showComment(item));
     }
-  })
-  .then(() => {
-    const once = { once: true };
-    likes.addEventListener(
-      "click",
-      (e) => {
-        const addLikes =
-          parseInt(likes.parentElement.querySelector("p").innerText) + 1;
-        counting(
-          { likes: addLikes },
-          `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`
-        );
-        likes.parentElement.querySelector("p").innerText = addLikes;
-        e.target.src = "./img/icon.png";
-      },
-      once
-    );
-  })
-  .then(() => {
-    const once = { once: true };
-    share.addEventListener(
-      "click",
-      (e) => {
-        const addRetweet =
-          parseInt(share.parentElement.querySelector("p").innerText) + 1;
-        counting(
-          { retweets: addRetweet },
-          `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`
-        );
-        share.parentElement.querySelector("p").innerText = addRetweet;
-        e.target.src = "./img/retweet.png";
-      },
-      once
-    );
-  })
-  .then(() => {
-    const coms = document.querySelector(".msgs");
-    coms.addEventListener("click", (e) => {
-      const combox = document.createElement("div");
-      combox.className = "text";
-      combox.innerHTML = `
+  }
+  isLiked()
+  isShared()
+  isCommented()
+}
+
+const isLiked = () => {
+  const once = { once: true };
+  likes.addEventListener(
+    "click",
+    (e) => {
+      const addLikes =
+        parseInt(likes.parentElement.querySelector("p").innerText) + 1;
+      counting(
+        { likes: addLikes },
+        `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`
+      );
+      likes.parentElement.querySelector("p").innerText = addLikes;
+      e.target.src = "./img/icon.png";
+    },
+    once
+  );
+}
+
+const isShared = () => {
+  const once = { once: true };
+  share.addEventListener(
+    "click",
+    (e) => {
+      const addRetweet =
+        parseInt(share.parentElement.querySelector("p").innerText) + 1;
+      counting(
+        { retweets: addRetweet },
+        `${API_ENDPOINT}/comments/${API.clickedCommentId.comid}`
+      );
+      share.parentElement.querySelector("p").innerText = addRetweet;
+      e.target.src = "./img/retweet.png";
+    },
+    once
+  );
+}
+
+
+const isCommented = () => {
+  const coms = document.querySelector(".msgs");
+  coms.addEventListener("click", (e) => {
+    const comBox = document.createElement("div");
+    comBox.className = "text";
+    comBox.innerHTML = `
         <textarea name="comment" class="commentText" placeholder="Your comment" rows="5"></textarea>
         <div>
           <img src="./img/Arrow 1.png" alt="arrow" class="arrow"></img>
           <button class="reply">Reply</button>
         </div>`;
-      e.target.offsetParent.append(combox);
+    e.target.offsetParent.append(comBox);
 
-      coms.disabled = true;
-      commentsDiv.style.height = "54%";
+    coms.disabled = true;
+    commentsDiv.style.height = "54%";
 
-      const arrow = combox.querySelector(".arrow");
-      arrow.addEventListener("click", () => {
-        combox.remove(combox);
+    const arrow = comBox.querySelector(".arrow");
+    arrow.addEventListener("click", () => {
+      comBox.remove(comBox);
+      coms.disabled = false;
+      commentsDiv.style.height = "70%";
+    });
+
+    const reply = comBox.querySelector(".reply");
+    reply.addEventListener("click", () => {
+      const textCPnt = comBox.querySelector(".commentText");
+      const pSelect = coms.parentNode.querySelector("p");
+
+      if (textCont.value === "") {
+        window.alert("Please enter a comment!");
+      } else {
+        makeNewComment(textCont.value);
+        showComment({
+          userId: parseInt(API.whichUserId.id),
+          tweetId: parseInt(API.clickedCommentId.comid),
+          content: textCont.value,
+          date: `${currentDate}`,
+          retweets: 0,
+          likes: 0,
+        });
+        const pSelect = coms.parentNode.querySelector("p");
+        pSelect.innerText = parseInt(pSelect.innerText) + 1;
+        comBox.remove(comBox);
         coms.disabled = false;
         commentsDiv.style.height = "70%";
-      });
-
-      const reply = combox.querySelector(".reply");
-      reply.addEventListener("click", () => {
-        const textcont = combox.querySelector(".commentText");
-        const pselect = coms.parentNode.querySelector("p");
-
-        if (textcont.value === "") {
-          window.alert("Please enter a comment!");
-        } else {
-          makeNewComment(textcont.value);
-          showComment({
-            userId: parseInt(API.whichUserId.id),
-            tweetId: parseInt(API.clickedCommentId.comid),
-            content: textcont.value,
-            date: `${currentDate}`,
-            retweets: 0,
-            likes: 0,
-          });
-          const pselect = coms.parentNode.querySelector("p");
-          pselect.innerText = parseInt(pselect.innerText) + 1;
-          combox.remove(combox);
-          coms.disabled = false;
-          commentsDiv.style.height = "70%";
-        }
-      });
+      }
     });
   });
+}

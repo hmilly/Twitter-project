@@ -11,13 +11,13 @@ console.log(
 );
 
   const tweetTextArea = document.querySelector(".tweetTextArea")
-  const tweetbutton = document.querySelector(".tweetButton")
-    tweetbutton.addEventListener("click", async (e) => {
+  const tweetButton = document.querySelector(".tweetButton")
+    tweetButton.addEventListener("click", async (e) => {
       if (tweetTextArea.value === ""){
         e.preventDefault()
         window.alert("Nothing to submit!")
       } else {
        createNewTweet(`${tweetTextArea.value}`)
-       .then(tweetbutton.href = "home.html" )
+       .then(tweetButton.href = "home.html" )
       }
   })

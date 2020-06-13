@@ -6,6 +6,7 @@ const getTweets = async () =>
   await fetch(TWEETS_URL)
     .then((res) => res.json())
     .catch((error) => console.log(error));
+    
 const getUsers = async () =>
   await fetch(USERS_URL)
     .then((res) => res.json())

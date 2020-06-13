@@ -31,7 +31,7 @@
       "id": 1,
       "userId": 1,
       "content": "Lip-Sync for Your Life",
-      "likes": 100,
+      "likes": 101,
       "retweets": 43,
       "date": "26/05/2020"
     },
@@ -236,7 +236,7 @@
       "content": "Shante, Shante, Shante",
       "date": "30/05/2020",
       "retweets": 44,
-      "likes": 101
+      "likes": 102
     },
     {
       "id": 2,
@@ -634,6 +634,15 @@
       "retweets": 0,
       "likes": 0,
       "id": 55
+    },
+    {
+      "userId": 1,
+      "tweetId": 1,
+      "content": "hey hey",
+      "date": "6/05/2020",
+      "retweets": 0,
+      "likes": 0,
+      "id": 56
     }
   ]
 }

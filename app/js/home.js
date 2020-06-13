@@ -17,21 +17,25 @@ const tweetContainer = document.querySelector(".tweet-container");
 const selectedImg = document.querySelector(".fileContainer");
 selectedImg.addEventListener("change", (e) => {
   let choice = e.target.files[0];
-  const selectedImg = document.querySelector(".userimg");
-  selectedImg.src = URL.createObjectURL(choice);
+  const sImg = document.querySelector(".userimg");
+  sImg.src = URL.createObjectURL(choice);
 });
 
-API.getTweets()
-  .then((tweetData) => {
-    for (let i in tweetData) {
-      if (tweetData[i].user.name === API.whichUser.person) {
-        title.innerText = `${API.whichUser.person}`;
-        at.innerText = `@${API.whichUser.person}`;
-      }
-      const text = document.createElement("div");
-      text.className = `comment-box`;
-      text.id = `${tweetData[i].id}`;
-      text.innerHTML = `
+
+const callTweets = async () => await API.getTweets()
+  .then(data => createTweets(data))
+
+
+const createTweets = (tweetData) => {
+  for (let i in tweetData) {
+    if (tweetData[i].user.name === API.whichUser.person) {
+      title.innerText = `${API.whichUser.person}`;
+      at.innerText = `@${API.whichUser.person}`;
+    }
+    const text = document.createElement("div");
+    text.className = `comment-box`;
+    text.id = `${tweetData[i].id}`;
+    text.innerHTML = `
         <a href=""><div class="header">
           <h5 class="userName">${tweetData[i].user.name}</h5>
           <h5>${tweetData[i].date}</h5>
@@ -56,96 +60,107 @@ API.getTweets()
             <p>${tweetData[i].comments.length}</p>
           </div>
         </div>`;
-      tweetContainer.append(text);
-    }
-  })
-  .then(() => {
-    const users = document.querySelectorAll(".header");
-    users.forEach((u, i) =>
-      u.addEventListener("click", () => {
-        API.clickedCommentId.removeItem("comid");
-        API.clickedCommentId.setItem("comid", i + 1);
-        u.parentNode.href = "mypage.html";
-      })
-    );
-  })
-  .then(() => {
-    const likes = document.querySelectorAll(".heart");
-    const once = { once: true };
-    likes.forEach((like) =>
-      like.addEventListener(
-        "click",
-        (e) => {
-          const parentId = e.path[3].id;
-          const addLike =
-            parseInt(like.parentElement.querySelector("p").innerText) + 1;
-          counting({ likes: addLike }, `${API_ENDPOINT}/tweets/${parentId}`);
-          like.parentElement.querySelector("p").innerText = addLike;
-          e.target.src = "./img/icon.png";
-        },
-        once
-      )
-    );
-  })
-  .then(() => {
-    const retweets = document.querySelectorAll(".retweet");
-    const once = { once: true };
-    retweets.forEach((tweet) =>
-      tweet.addEventListener(
-        "click",
-        (e) => {
-          const parentId = e.path[3].id;
-          const addRetweet =
-            parseInt(tweet.parentElement.querySelector("p").innerText) + 1;
-          counting(
-            { retweets: addRetweet },
-            `${API_ENDPOINT}/tweets/${parentId}`
-          );
-          tweet.parentElement.querySelector("p").innerText = addRetweet;
-          e.target.src = "./img/retweet.png";
-        },
-        once
-      )
-    );
-  })
-  .then(() => {
-    const coms = document.querySelectorAll(".msgs");
-    coms.forEach((item, i) => {
-      item.addEventListener("click", (e) => {
-        API.clickedCommentId.removeItem("comid");
-        API.clickedCommentId.setItem("comid", i + 1);
+    tweetContainer.append(text);
+  }
+  userClicks()
+  likeBtns()
+  retweetBtn()
+  commentBoxes()
+}
 
-        const combox = document.createElement("div");
-        combox.className = "text";
-        combox.innerHTML = `
+const userClicks = () => {
+  const users = document.querySelectorAll(".header");
+  users.forEach((u, i) =>
+    u.addEventListener("click", () => {
+      console.log("hi")
+      API.clickedCommentId.removeItem("comid");
+      API.clickedCommentId.setItem("comid", i + 1);
+      u.parentNode.href = "mypage.html";
+    })
+  );
+}
+
+const likeBtns = () => {
+  const likes = document.querySelectorAll(".heart");
+  const once = { once: true };
+  likes.forEach((like) =>
+    like.addEventListener(
+      "click",
+      (e) => {
+        const parentId = e.path[3].id;
+        const addLike =
+          parseInt(like.parentElement.querySelector("p").innerText) + 1;
+        counting({ likes: addLike }, `${API_ENDPOINT}/tweets/${parentId}`);
+        like.parentElement.querySelector("p").innerText = addLike;
+        e.target.src = "./img/icon.png";
+      },
+      once
+    )
+  );
+}
+
+const retweetBtn = () => {
+  const retweets = document.querySelectorAll(".retweet");
+  const once = { once: true };
+  retweets.forEach((tweet) =>
+    tweet.addEventListener(
+      "click",
+      (e) => {
+        const parentId = e.path[3].id;
+        const addRetweet =
+          parseInt(tweet.parentElement.querySelector("p").innerText) + 1;
+        counting(
+          { retweets: addRetweet },
+          `${API_ENDPOINT}/tweets/${parentId}`
+        );
+        tweet.parentElement.querySelector("p").innerText = addRetweet;
+        e.target.src = "./img/retweet.png";
+      },
+      once
+    )
+  );
+}
+
+const commentBoxes = () => {
+  const coms = document.querySelectorAll(".msgs");
+  coms.forEach((item, i) => {
+    item.addEventListener("click", (e) => {
+      API.clickedCommentId.removeItem("comid");
+      API.clickedCommentId.setItem("comid", i + 1);
+
+      const comBox = document.createElement("div");
+      comBox.className = "text";
+      comBox.innerHTML = `
         <textarea name="comment" class="commentText" placeholder="Your comment" rows="5"></textarea>
         <div>
           <img src="./img/Arrow 1.png" alt="arrow" class="arrow"></img>
           <button class="reply">Reply</button>
         </div>`;
-        e.target.offsetParent.append(combox);
+      e.target.offsetParent.append(comBox);
 
-        item.disabled = true;
+      item.disabled = true;
 
-        const arrow = combox.querySelector(".arrow");
-        arrow.addEventListener("click", () => {
-          combox.remove(combox);
+      const arrow = comBox.querySelector(".arrow");
+      arrow.addEventListener("click", () => {
+        comBox.remove(comBox);
+        item.disabled = false;
+      });
+
+      const reply = comBox.querySelector(".reply");
+      reply.addEventListener("click", (e) => {
+        const textcont = comBox.querySelector(".commentText");
+        if (textcont.value === "") {
+          window.alert("Please enter a comment!");
+        } else {
+          makeNewComment(`${textcont.value}`);
+          const pselect = item.parentNode.querySelector("p");
+          pselect.innerText = parseInt(pselect.innerText) + 1;
+          comBox.remove(comBox);
           item.disabled = false;
-        });
-
-        const reply = combox.querySelector(".reply");
-        reply.addEventListener("click", (e) => {
-          const textcont = combox.querySelector(".commentText");
-          if (textcont.value === "") {
-            window.alert("Please enter a comment!");
-          } else {
-            makeNewComment(`${textcont.value}`);
-            const pselect = item.parentNode.querySelector("p");
-            pselect.innerText = parseInt(pselect.innerText) + 1;
-            combox.remove(combox);
-            item.disabled = false;
-          }
-        });
+        }
       });
     });
   });
+}
+
+callTweets()
