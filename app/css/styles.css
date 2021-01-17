@@ -1,0 +1,523 @@
+.home-container {
+  border: rgba(0, 0, 0, 0.258) solid 1px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto; }
+  .home-container .tweet-bg {
+    position: absolute;
+    width: 100%; }
+    .home-container .tweet-bg .swirl {
+      width: 100%; }
+    .home-container .tweet-bg .tri {
+      width: 100%;
+      height: 40%; }
+    .home-container .tweet-bg .walker {
+      position: absolute;
+      top: 50%;
+      left: 0; }
+    .home-container .tweet-bg .walkers {
+      position: absolute;
+      top: 80%;
+      left: 40%; }
+  .home-container .tweet-btn,
+  .home-container .msg-btn {
+    position: absolute;
+    top: 88%;
+    left: 83%;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1; }
+  .home-container .home_tweet-top {
+    display: block;
+    position: relative;
+    width: 100%; }
+    .home-container .home_tweet-top div:first-child {
+      width: 100%;
+      padding: 7% 8%;
+      float: top; }
+      .home-container .home_tweet-top div:first-child img {
+        width: 6%;
+        margin-top: -2%;
+        float: left;
+        cursor: pointer; }
+      .home-container .home_tweet-top div:first-child button {
+        float: right;
+        font-size: 1em;
+        cursor: pointer;
+        width: 20%;
+        border-radius: 5px;
+        background-color: yellow;
+        color: black;
+        font-weight: bold;
+        padding: 2% 4%;
+        margin-top: -5%;
+        margin-left: 10%;
+        border: black solid 1px; }
+      .home-container .home_tweet-top div:first-child p {
+        float: left;
+        font-size: 1em;
+        color: yellow;
+        font-weight: bold;
+        margin-top: -5%;
+        margin-right: 5%; }
+    .home-container .home_tweet-top div:last-child {
+      border-top: yellow solid 1px;
+      float: bottom;
+      padding: 8% 6%; }
+      .home-container .home_tweet-top div:last-child textarea {
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 5px;
+        border: yellow solid 1px;
+        color: yellow;
+        padding: 4%;
+        font-size: 18px;
+        background-color: black;
+        resize: none; }
+  .home-container .info {
+    position: relative;
+    height: 20%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0; }
+    .home-container .info .image-counter {
+      position: relative;
+      width: 20%;
+      height: auto;
+      padding-top: 9%;
+      float: left;
+      padding-left: 5%; }
+      .home-container .info .image-counter .fileContainer {
+        overflow: hidden;
+        position: absolute;
+        border-radius: 50%; }
+        .home-container .info .image-counter .fileContainer img {
+          width: 100%;
+          height: auto;
+          max-width: auto; }
+      .home-container .info .image-counter .fileContainer [type="file"] {
+        display: block;
+        font-size: 9px;
+        filter: alpha(opacity=0);
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0; }
+      .home-container .info .image-counter .fileContainer [type="file"] {
+        cursor: pointer; }
+    .home-container .info .info-box {
+      padding-top: 9%;
+      float: right;
+      width: 75%;
+      color: white; }
+      .home-container .info .info-box .title h2 {
+        margin: 0; }
+      .home-container .info .info-box .at {
+        width: 85%;
+        font-style: italic;
+        padding: 1% 0; }
+        .home-container .info .info-box .at div {
+          display: inline-block;
+          padding: 0 2%; }
+          .home-container .info .info-box .at div p {
+            margin: 0; }
+        .home-container .info .info-box .at div:last-child {
+          float: right; }
+      .home-container .info .info-box .following {
+        border-bottom: purple solid 2px;
+        padding: 3% 0 2% 0;
+        width: 94%; }
+        .home-container .info .info-box .following div {
+          display: inline-block;
+          padding: 0 2%;
+          width: 40%; }
+          .home-container .info .info-box .following div h5 {
+            padding: 0 5%; }
+          .home-container .info .info-box .following div h5,
+          .home-container .info .info-box .following div p {
+            display: inline-block;
+            margin: 0; }
+        .home-container .info .info-box .following div:last-child {
+          float: right;
+          padding-right: 8%; }
+      .home-container .info .info-box span {
+        padding-top: 5px;
+        display: block;
+        width: 75%;
+        border-bottom: grey solid 2px; }
+  .home-container .tweet-container {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    overflow-y: scroll; }
+    .home-container .tweet-container .comment-box {
+      background-color: white;
+      box-shadow: 2px 6px rgba(177, 177, 177, 0.356);
+      position: relative;
+      top: 2%;
+      height: auto;
+      width: 85%;
+      margin: 0 auto 7% auto;
+      border-radius: 10px;
+      border: rgba(190, 190, 190, 0.698) solid 1px; }
+      .home-container .tweet-container .comment-box .header {
+        font-style: italic;
+        width: 100%;
+        background-color: yellow;
+        border-radius: 5px;
+        cursor: pointer; }
+        .home-container .tweet-container .comment-box .header h5 {
+          margin: 0;
+          padding: 4% 9%;
+          display: inline-block; }
+        .home-container .tweet-container .comment-box .header h5:last-child {
+          float: right;
+          font-weight: 300; }
+      .home-container .tweet-container .comment-box .content {
+        color: grey;
+        height: auto;
+        padding: 2% 8%; }
+        .home-container .tweet-container .comment-box .content p {
+          margin: 3% auto; }
+        .home-container .tweet-container .comment-box .content p:last-child {
+          color: #e03a8d; }
+      .home-container .tweet-container .comment-box .footer {
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        border-top: rgba(197, 197, 197, 0.842) solid 1px; }
+        .home-container .tweet-container .comment-box .footer .cont {
+          display: inline-block;
+          width: 32%;
+          padding: 2% 5%;
+          margin-top: 0; }
+          .home-container .tweet-container .comment-box .footer .cont img,
+          .home-container .tweet-container .comment-box .footer .cont button {
+            float: left;
+            padding: 2% 6%;
+            cursor: pointer;
+            border: none;
+            background: none; }
+          .home-container .tweet-container .comment-box .footer .cont button {
+            padding: 0; }
+          .home-container .tweet-container .comment-box .footer .cont p {
+            font-style: normal;
+            font-weight: bold;
+            color: grey;
+            padding-top: 2%;
+            padding-right: 20%;
+            margin: 0;
+            float: right; }
+      .home-container .tweet-container .comment-box .text {
+        border-top: rgba(197, 197, 197, 0.842) solid 1px;
+        width: 90%;
+        padding: 2%;
+        margin: 0 auto; }
+        .home-container .tweet-container .comment-box .text textarea {
+          padding: 3% 2%;
+          float: top;
+          height: 80%;
+          width: 100%;
+          border: rgba(197, 197, 197, 0.842) solid 1px;
+          border-radius: 5px;
+          font-style: italic;
+          resize: none; }
+        .home-container .tweet-container .comment-box .text div {
+          width: 100%;
+          float: bottom;
+          padding: 5%; }
+          .home-container .tweet-container .comment-box .text div img {
+            width: 6%;
+            float: left;
+            cursor: pointer;
+            margin-top: -2%; }
+          .home-container .tweet-container .comment-box .text div button {
+            float: right;
+            font-size: 1em;
+            cursor: pointer;
+            width: 20%;
+            border-radius: 5px;
+            background-color: black;
+            color: yellow;
+            font-weight: 400;
+            padding: 2% 4%;
+            margin-top: -5%; }
+  .home-container .tweet-container::-webkit-scrollbar {
+    display: none; }
+
+* {
+  box-sizing: border-box;
+  font-family: Georgia, "Times New Roman", Times, serif; }
+
+body {
+  position: relative;
+  height: 100vh;
+  max-width: 600px;
+  min-width: 600px;
+  max-height: 1200px;
+  margin: 0 auto;
+  overflow: hidden; }
+
+.login-main {
+  background-image: url("../img/bgimg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0 auto; }
+  .login-main .login-container {
+    display: block;
+    position: relative;
+    top: 23%;
+    width: 80%;
+    margin: 0 auto; }
+    .login-main .login-container .image {
+      display: block;
+      position: relative;
+      width: auto;
+      text-align: center;
+      margin: 0 auto; }
+    .login-main .login-container .form {
+      display: block;
+      position: relative;
+      top: 5%;
+      width: 100%;
+      height: 40%;
+      text-align: center;
+      margin: 0 auto;
+      padding: 2%; }
+      .login-main .login-container .form input {
+        display: inline-block;
+        width: 100%;
+        padding: 2%;
+        margin: 1% auto;
+        font-size: 1em;
+        font-style: italic;
+        color: white;
+        background-color: black;
+        cursor: pointer;
+        border: black solid 1px;
+        border-bottom: yellow solid 2px;
+        outline: none; }
+      .login-main .login-container .form .homeButton {
+        display: inline-block;
+        position: relative;
+        width: 40%;
+        height: 30%;
+        padding: 4%;
+        font-size: 1.1em;
+        font-weight: bolder;
+        color: black;
+        background-color: yellow;
+        border: yellow solid 2px;
+        border-radius: 7%;
+        margin: 6% auto; }
+
+.mypage-bg {
+  display: block;
+  position: relative;
+  background-color: black;
+  width: 100%;
+  height: 100%; }
+  .mypage-bg .msg-img-div {
+    position: absolute;
+    width: 100%;
+    top: 60%; }
+    .mypage-bg .msg-img-div img:first-child {
+      position: absolute;
+      width: 100%;
+      margin-top: -30%; }
+    .mypage-bg .msg-img-div img:last-child {
+      position: absolute;
+      margin-left: 25%;
+      width: 50%; }
+  .mypage-bg .my_page-top {
+    display: block;
+    position: relative;
+    float: top;
+    width: 100%; }
+    .mypage-bg .my_page-top .my_page {
+      width: 100%;
+      padding: 7% 8%;
+      float: top;
+      border-bottom: yellow solid 2px; }
+      .mypage-bg .my_page-top .my_page img {
+        width: 8%;
+        cursor: pointer;
+        float: left;
+        cursor: pointer; }
+      .mypage-bg .my_page-top .my_page p {
+        float: left;
+        font-size: 1.5em;
+        color: yellow;
+        font-weight: bold;
+        margin-top: -2%;
+        padding: 1% 5%; }
+    .mypage-bg .my_page-top .mypage-info {
+      padding: 5%;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
+      .mypage-bg .my_page-top .mypage-info .img-counter {
+        cursor: pointer;
+        width: 18%;
+        float: left; }
+        .mypage-bg .my_page-top .mypage-info .img-counter img {
+          width: 100%;
+          float: left; }
+      .mypage-bg .my_page-top .mypage-info .info-box {
+        border-bottom: purple solid 2px;
+        padding: 1%;
+        width: 94%;
+        float: right;
+        width: 75%;
+        color: white; }
+        .mypage-bg .my_page-top .mypage-info .info-box .title h2 {
+          margin: 0; }
+        .mypage-bg .my_page-top .mypage-info .info-box .at {
+          width: 85%;
+          font-style: italic;
+          padding: 1% 0; }
+          .mypage-bg .my_page-top .mypage-info .info-box .at div {
+            display: inline-block;
+            padding: 0 2%; }
+            .mypage-bg .my_page-top .mypage-info .info-box .at div p {
+              margin: 0; }
+          .mypage-bg .my_page-top .mypage-info .info-box .at div:last-child {
+            float: left; }
+      .mypage-bg .my_page-top .mypage-info span {
+        display: block;
+        width: 50%;
+        padding: 0.5% 0;
+        margin-left: 7%;
+        float: left;
+        border-bottom: grey solid 2px; }
+    .mypage-bg .my_page-top .contents {
+      display: block;
+      position: relative;
+      margin-top: 13%;
+      color: grey;
+      height: auto;
+      padding: 0 5% 3%; }
+      .mypage-bg .my_page-top .contents p {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 1%; }
+    .mypage-bg .my_page-top .footer {
+      width: 90%;
+      margin: 0 auto;
+      border-top: white solid 1px;
+      border-bottom: white solid 1px; }
+      .mypage-bg .my_page-top .footer .cont {
+        display: inline-block;
+        width: 32%;
+        padding: 1% 6%;
+        margin-top: 0; }
+        .mypage-bg .my_page-top .footer .cont img,
+        .mypage-bg .my_page-top .footer .cont button {
+          width: 35%;
+          float: left;
+          padding: 2% 6%;
+          cursor: pointer;
+          border: none;
+          background: none; }
+        .mypage-bg .my_page-top .footer .cont button {
+          width: 100%; }
+        .mypage-bg .my_page-top .footer .cont p {
+          font-size: 18px;
+          font-weight: bold;
+          color: white;
+          padding-right: 20%;
+          margin: 0;
+          float: right; }
+    .mypage-bg .my_page-top .text {
+      width: 90%;
+      margin: 2% auto; }
+      .mypage-bg .my_page-top .text textarea {
+        background-color: black;
+        padding: 1% 2%;
+        font-size: large;
+        float: top;
+        width: 100%;
+        border: yellow solid 2px;
+        border-radius: 5px;
+        font-style: italic;
+        resize: none;
+        color: yellow; }
+      .mypage-bg .my_page-top .text div {
+        width: 100%;
+        float: bottom;
+        padding: 5%;
+        margin-bottom: -4%; }
+        .mypage-bg .my_page-top .text div img {
+          width: 8%;
+          float: left;
+          cursor: pointer;
+          margin-top: -4%; }
+        .mypage-bg .my_page-top .text div button {
+          float: right;
+          font-size: 1.2em;
+          font-weight: 800;
+          cursor: pointer;
+          width: 16%;
+          border-radius: 5px;
+          background-color: yellow;
+          color: black;
+          padding: 1%;
+          margin-top: -5%;
+          margin-left: 10%; }
+  .mypage-bg .msg-container {
+    display: block;
+    position: relative;
+    float: bottom;
+    width: 100%;
+    height: 70%;
+    margin: 0 auto;
+    overflow-y: scroll; }
+    .mypage-bg .msg-container .comments {
+      display: block;
+      position: relative; }
+      .mypage-bg .msg-container .comments h2 {
+        font-size: 20px;
+        padding: 0 4% 4% 4%;
+        color: white; }
+    .mypage-bg .msg-container .item {
+      position: relative;
+      width: 85%;
+      margin: 0 auto;
+      padding-bottom: 5%; }
+      .mypage-bg .msg-container .item img {
+        width: 10%;
+        display: inline-block; }
+      .mypage-bg .msg-container .item .comments-box {
+        width: 85%;
+        float: right;
+        color: white; }
+        .mypage-bg .msg-container .item .comments-box div p:first-child {
+          float: left;
+          border-bottom: purple solid 2px;
+          padding: 0 2% 1%; }
+        .mypage-bg .msg-container .item .comments-box div p:last-child {
+          padding: 0 2%;
+          float: left;
+          font-style: italic;
+          border-bottom: purple solid 2px;
+          padding: 0 2% 1%; }
+        .mypage-bg .msg-container .item .comments-box span {
+          display: block;
+          border-bottom: grey solid 2px;
+          width: 25%;
+          padding-top: 10%; }
+      .mypage-bg .msg-container .item .content {
+        border-bottom: whitesmoke solid 2px;
+        color: grey;
+        height: auto;
+        width: 100%;
+        margin: 0 auto;
+        padding: 2%; }
+  .mypage-bg .msg-container::-webkit-scrollbar {
+    display: none; }
