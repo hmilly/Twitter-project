@@ -7,3 +7,5 @@ const getTweets = () => fetch(TWEETS_URL).then(res => res.json())
 export default {
     getTweets
 }
+
+//test
